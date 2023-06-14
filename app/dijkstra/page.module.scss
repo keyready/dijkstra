@@ -1,0 +1,20 @@
+.page {
+  padding: 50px;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 50px 0;
+
+  td, th {
+    border: 1px solid white;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+.createGraphForm {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}

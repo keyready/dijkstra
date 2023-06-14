@@ -1,6 +1,6 @@
 "use client"
 
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useState} from 'react'
 import classes from './page.module.scss'
 import {GraphTableWithInput} from "@/components/InputGraph";
 
@@ -38,7 +38,9 @@ export default function Page() {
     }, [startNode])
 
     return (
-        <div className={classes.page}>
+        <div>
+            <h1 className={classes.header}>Алгоритм Дейкстры</h1>
+
             <GraphTableWithInput isChanged={handleTableChange} handleSetGraph={setGraph}/>
 
             {graph && (

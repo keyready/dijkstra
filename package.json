@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "init": "concurrently -n client-init,server-init \"npm run client:init\" \"npm run server:init\"",
-    "start:dev": "concurrently -n client,server \"npm run dev\" \"nodemon server/server.js\"",
+    "init": "concurrently -n client-init,server-init -c green.bold,blue.bold \"npm run client:init\" \"npm run server:init\"",
+    "start:dev": "concurrently -n client,server -c green.bold,blue.bold \"npm run dev\" \"nodemon server/server.js\"",
     "client:init": "npm install",
     "server:init": "cd ./server && npm install"
   },

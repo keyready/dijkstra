@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Show current directory
-        run: echo ls
+        run: ls
 
       - name: Установка зависимостей
         run: npm run init

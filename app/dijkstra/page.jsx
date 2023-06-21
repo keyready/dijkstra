@@ -3,41 +3,52 @@
 import { useCallback, useState } from 'react';
 import classes from './page.module.scss';
 import { GraphTableWithInput } from '@/components/InputGraph';
+import { Button } from '@/components/Button';
 
 export default function Page() {
-    const [nodes, setNodes] = useState();
+    const [shortestPath, setShortestPath] = useState();
     const [startNode, setStartNode] = useState('');
+    const [endNode, setEndNode] = useState('');
     const [graph, setGraph] = useState();
 
     const handleStartNodeChange = useCallback(
         (event) => {
             const { value } = event.target;
-            setNodes(undefined);
+            setShortestPath(undefined);
             if (!Object.keys(graph).includes(value)) setStartNode('');
             else setStartNode(value);
         },
         [setStartNode, graph],
     );
+    const handleEndNodeChange = useCallback(
+        (event) => {
+            const { value } = event.target;
+            setShortestPath(undefined);
+            if (!Object.keys(graph).includes(value)) setEndNode('');
+            else setEndNode(value);
+        },
+        [graph],
+    );
 
     const handleTableChange = useCallback(() => {
         setStartNode('');
         setGraph(undefined);
-        setNodes(undefined);
+        setShortestPath(undefined);
     }, []);
 
     const getGraph = useCallback(() => {
         fetch('http://localhost:9999/get_dijkstra', {
             method: 'post',
-            body: JSON.stringify({ startNode, graph }),
+            body: JSON.stringify({ startNode, endNode, graph }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
             .then((res) => res.json())
             .then((res) => {
-                setNodes(res);
+                setShortestPath(res.distance || 'Пути нет');
             });
-    }, [graph, startNode]);
+    }, [endNode, graph, startNode]);
 
     return (
         <div>
@@ -55,31 +66,29 @@ export default function Page() {
                         onChange={handleStartNodeChange}
                     />
                     {startNode && (
-                        <button onClick={getGraph} type="button">
+                        <>
+                            <h3>Конечная нода: </h3>
+                            <input
+                                placeholder="Введите конечную ноду"
+                                type="text"
+                                value={endNode}
+                                onChange={handleEndNodeChange}
+                            />
+                        </>
+                    )}
+
+                    {startNode && (
+                        <Button onClick={getGraph} type="button">
                             Просчитать
-                        </button>
+                        </Button>
                     )}
                 </div>
             )}
 
-            {nodes && (
-                <table className={classes.table}>
-                    <tr>
-                        <th>Вершина</th>
-                        {Object.keys(nodes).map((node) => (
-                            <th key={node}>{node}</th>
-                        ))}
-                    </tr>
-                    <tr>
-                        <td>
-                            Расстояние от
-                            {startNode}
-                        </td>
-                        {Object.values(nodes).map((node, index) => (
-                            <td key={index}>{node}</td>
-                        ))}
-                    </tr>
-                </table>
+            {shortestPath && (
+                <h3 className={classes.result}>
+                    {`Кратчайшее расстояние от ${startNode} до ${endNode}: ${shortestPath}`}
+                </h3>
             )}
         </div>
     );

@@ -1,13 +1,14 @@
 /**
  * Реализация алгоритма Дейкстры на JavaScript
  *
- * @param startNode - начальная года
+ * @param startNode - начальная нода
+ * @param endNode - конечная нода
  * @param graph - данный граф
- * @returns {{distances: {}, previous: {}}} - объект дистанций
+ * @returns {{distance: *}} - объект дистанций
  *  между начальной нодой и всеми нодами и
  *  объект для отслеживания пути от стартового узла до каждого другого узла в графе
  */
-const dijkstra = (startNode, graph) => {
+const dijkstra = (startNode, endNode, graph) => {
     /**
      * тут хрянятся дистанции между начальной нодой и всеми остальными, где
      *  ключ - нода
@@ -67,7 +68,7 @@ const dijkstra = (startNode, graph) => {
         }
     }
 
-    return { distances, previous, graph };
+    return { distance: distances[endNode] };
 };
 
 /**

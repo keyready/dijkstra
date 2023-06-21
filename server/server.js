@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const { dijkstra } = require('./lib/dijkstra');
 const { bfs } = require('./lib/bfs');
+const { floyd } = require('./lib/floyd');
 
 const app = express();
 
@@ -13,8 +14,8 @@ app.use(express.json());
 
 app.post('/get_dijkstra', (req, res) => {
     try {
-        const { startNode, graph } = req.body;
-        const { distances } = dijkstra(startNode, graph);
+        const { startNode, endNode, graph } = req.body;
+        const distances = dijkstra(startNode, endNode, graph);
 
         return res.status(200).json(distances);
     } catch (e) {
@@ -29,6 +30,19 @@ app.post('/bfs', (req, res) => {
         const track = bfs(graph, startNode);
 
         return res.status(200).json(track);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: 'Непредвиденная ошибка' });
+    }
+});
+
+app.post('/floyd', (req, res) => {
+    try {
+        const { graph } = req.body;
+
+        const distances = floyd(graph);
+
+        return res.status(200).json(distances);
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: 'Непредвиденная ошибка' });

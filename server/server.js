@@ -40,9 +40,9 @@ app.post('/floyd', (req, res) => {
     try {
         const { graph } = req.body;
 
-        const distances = floyd(graph);
+        const dist = floyd(graph);
 
-        return res.status(200).json(distances);
+        return res.status(200).json(dist);
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: 'Непредвиденная ошибка' });

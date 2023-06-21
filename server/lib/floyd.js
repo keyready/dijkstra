@@ -1,33 +1,41 @@
-function floyd(graph) {
+function convertGraphToObject(graph) {
     const vertices = Object.keys(graph);
-    const distances = {};
+    const numVertices = vertices.length;
+    const matrix = [];
+
+    // Инициализация матрицы смежности
+    for (let i = 0; i < numVertices; i += 1) {
+        matrix[i] = [];
+        const sourceVertex = vertices[i];
+        for (let j = 0; j < numVertices; j += 1) {
+            const targetVertex = vertices[j];
+            matrix[i][j] = graph[sourceVertex][targetVertex] ?? Infinity;
+        }
+    }
+
+    return matrix;
+}
+
+function floyd(originGraph) {
+    const graph = convertGraphToObject(originGraph);
+    const numVertices = graph.length;
+    const dist = [];
 
     // Инициализация матрицы расстояний
-    for (const vertex of vertices) {
-        distances[vertex] = {};
-        for (const otherVertex of vertices) {
-            if (vertex === otherVertex) {
-                distances[vertex][otherVertex] = 0;
-            } else if (graph[vertex][otherVertex]) {
-                distances[vertex][otherVertex] = graph[vertex][otherVertex];
+    for (let i = 0; i < numVertices; i += 1) {
+        dist[i] = [];
+        for (let j = 0; j < numVertices; j += 1) {
+            if (i === j) {
+                dist[i][j] = 0;
+            } else if (!isFinite(graph[i][j])) {
+                dist[i][j] = Infinity;
             } else {
-                distances[vertex][otherVertex] = Infinity;
+                dist[i][j] = graph[i][j];
             }
         }
     }
 
-    // Поиск кратчайших путей
-    for (const k of vertices) {
-        for (const i of vertices) {
-            for (const j of vertices) {
-                if (distances[i][j] > distances[i][k] + distances[k][j]) {
-                    distances[i][j] = distances[i][k] + distances[k][j];
-                }
-            }
-        }
-    }
-
-    return distances;
+    return dist;
 }
 
 module.exports = {

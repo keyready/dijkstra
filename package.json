@@ -9,7 +9,6 @@
         "init:force": "concurrently -n client-init,server-init -c green.bold,blue.bold \"npm run client:init --force\" \"npm run server:init --force\"",
         "start:dev": "concurrently -n client,server -c green.bold,blue.bold \"npm run dev\" \"nodemon server/server.js\"",
         "style": "concurrently -n prettier,eslint -c blue.bold,green \"npm run prettier\" \"npm run lint\"",
-
         "client:init": "npm install",
         "server:init": "cd ./server && npm install",
         "lint": "eslint \"**/*.{js,jsx}\" --fix",
@@ -23,8 +22,8 @@
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "prettier": "2.8.8",
-        "husky": "^8.0.0"
+        "husky": "^8.0.3",
+        "prettier": "2.8.8"
     },
     "dependencies": {
         "concurrently": "^8.2.0",
@@ -34,5 +33,11 @@
         "react": "^18.2.0",
         "react-dom": "18.2.0",
         "sass": "^1.63.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint && npm run prettier"
+        }
     }
+
 }

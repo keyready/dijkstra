@@ -59,7 +59,9 @@ export function GraphTableWithInput(props) {
                                         className={classes.tableInput}
                                         type="number"
                                         value={graph[rowVertex][colVertex] || ''}
-                                        onChange={(e) => handleCellChange(rowVertex, colVertex, e.target.value)}
+                                        onChange={(e) =>
+                                            handleCellChange(rowVertex, colVertex, e.target.value)
+                                        }
                                     />
                                 </td>
                             ))}

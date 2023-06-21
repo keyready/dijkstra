@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Установка зависимостей
-        run: npm ci
+        run: npm run init
 
 
       - name: Starting ESlint

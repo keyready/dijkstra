@@ -10,20 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Проверка репозитория
         uses: actions/checkout@v2
 
-      - name: Show current directory
-        run: ls
+      - name: Установка зависимостей клиента
+        run: npm install
 
-      - name: Установка зависимостей
+      - name: Установка зависимостей сервера
         run: npm run init
 
-      - name: Starting ESlint
+      - name: Запуск ESlint
         run: npm run lint
 
-      - name: Starting Prettier
+      - name: Запуск Prettier
         run: npm run prettier
 
-      - name: Build Next.js app
+      - name: Сборка приложения
         run: npm run build

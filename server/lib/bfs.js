@@ -4,12 +4,18 @@ const defaultGraph = {
     C: ['E'],
     D: ['F'],
     E: [],
-    F: []
+    F: [],
 };
 
 function bfs(startNode, graph = defaultGraph) {
     const visited = {};
     const queue = [];
+
+    const newGraph = {};
+    for (const key in graph) {
+        newGraph[key] = Object.keys(graph[key]);
+    }
+    console.log(newGraph);
 
     // Помещаем стартовый узел в очередь и отмечаем его как посещенный
     queue.push(startNode);
@@ -19,9 +25,9 @@ function bfs(startNode, graph = defaultGraph) {
     const adjacencyMatrix = {};
 
     // Инициализируем строки матрицы смежности
-    for (const node in graph) {
+    for (const node in newGraph) {
         adjacencyMatrix[node] = {};
-        for (const neighbor of graph[node]) {
+        for (const neighbor of newGraph[node]) {
             adjacencyMatrix[node][neighbor] = 0;
         }
     }
@@ -31,7 +37,7 @@ function bfs(startNode, graph = defaultGraph) {
         const currentNode = queue.shift();
 
         // Получаем смежные узлы текущего узла
-        const neighbors = graph[currentNode];
+        const neighbors = newGraph[currentNode];
 
         // Обновляем значения в матрице смежности
         for (const neighbor of neighbors) {
@@ -45,9 +51,10 @@ function bfs(startNode, graph = defaultGraph) {
         }
     }
 
-    return adjacencyMatrix
+    console.log(adjacencyMatrix);
+    return adjacencyMatrix;
 }
 
 module.exports = {
-    bfs
-}
+    bfs,
+};

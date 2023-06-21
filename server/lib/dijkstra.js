@@ -33,10 +33,8 @@ const dijkstra = (startNode, graph) => {
      */
     const queue = [];
 
-
-
     // Инициализация начальных значений
-    for (let node in graph) {
+    for (const node in graph) {
         distances[node] = Infinity;
         previous[node] = null;
     }
@@ -59,7 +57,7 @@ const dijkstra = (startNode, graph) => {
         visited[node] = true;
 
         // Обновляем стоимости смежных узлов
-        for (let neighbor in graph[node]) {
+        for (const neighbor in graph[node]) {
             const newCost = cost + graph[node][neighbor];
             if (newCost < distances[neighbor]) {
                 distances[neighbor] = newCost;
@@ -74,7 +72,7 @@ const dijkstra = (startNode, graph) => {
 
 /**
  * Функция восстановлеия пути из начальной точки до любой
- * 
+ *
  * @param previous - объект-результат выполнения алгоритма Дейкстры, содержащий кратчайшие пути от ноды до ноды
  * @param endNode - конечная нода, которой надо достичь
  * @returns {*[]} - массив нод, образующих кратчайший путь из startNode в endNode
@@ -92,11 +90,10 @@ const reconstructPath = (previous, endNode) => {
     return path;
 };
 
-
 module.exports = {
     dijkstra,
-    reconstructPath
-}
+    reconstructPath,
+};
 
 // const endNode = 'C';
 //

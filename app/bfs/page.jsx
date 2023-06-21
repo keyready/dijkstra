@@ -1,25 +1,26 @@
-"use client"
+'use client';
 
-import classes from './page.module.scss'
-import {useCallback, useEffect, useState} from "react";
-import {GraphTableWithInput} from "@/components/InputGraph";
+import { useCallback, useState } from 'react';
+import classes from './page.module.scss';
+import { GraphTableWithInput } from '@/components/InputGraph';
 
 export default function Page() {
-
-    const [route, setRoute] = useState({})
-    const [startNode, setStartNode] = useState('')
+    const [route, setRoute] = useState({});
+    const [startNode, setStartNode] = useState('');
 
     const findBFS = useCallback((graph) => {
         fetch('http://localhost:9999/bfs', {
             method: 'post',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({graph, startNode: "A"})
+            body: JSON.stringify({ graph, startNode: 'A' }),
         })
-            .then(res => res.json())
-            .then(res => setRoute(res))
-    }, [startNode])
+            .then((res) => res.json())
+            .then((res) => {
+                setRoute(res);
+            });
+    }, []);
 
     return (
         <div>
@@ -30,9 +31,12 @@ export default function Page() {
             {route && (
                 <div className={classes.content}>
                     <h2 className={classes.res}>Результат</h2>
+                    {/* <table> */}
+                    {/*    <tr></tr> */}
+                    {/* </table> */}
                     <GraphTableWithInput defaultGraph={route} />
                 </div>
             )}
         </div>
-    )
+    );
 }

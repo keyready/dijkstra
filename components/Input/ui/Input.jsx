@@ -1,16 +1,8 @@
-import classes from './Input.module.scss'
-import {classNames} from "@/lib/classNames";
+import classes from './Input.module.scss';
+import { classNames } from '@/lib/classNames';
 
-export const Input = (props) => {
-    const {
-        className,
-        ...otherProps
-    } = props;
+export function Input(props) {
+    const { className, ...otherProps } = props;
 
-    return (
-        <input
-            className={classNames(classes.input, {}, [className])}
-            {...otherProps}
-        />
-    )
+    return <input className={classNames(classes.input, {}, [className])} {...otherProps} />;
 }

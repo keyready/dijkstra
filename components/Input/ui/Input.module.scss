@@ -1,18 +1,18 @@
 .input {
-  cursor: text;
-  border: none;
-  outline: 2px solid white;
-  padding: 5px 10px;
-  background: transparent;
+    cursor: text;
+    border: none;
+    outline: 2px solid white;
+    padding: 5px 10px;
+    background: transparent;
 
-  &:focus {
-    background: lightcyan;
-    color: black;
-  }
+    &:focus {
+        background: lightcyan;
+        color: black;
+    }
 
-  &:disabled {
-    cursor: not-allowed;
-    background: grey;
-    outline: 2px solid grey;
-  }
+    &:disabled {
+        cursor: not-allowed;
+        background: grey;
+        outline: 2px solid grey;
+    }
 }

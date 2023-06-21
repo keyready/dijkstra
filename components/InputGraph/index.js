@@ -1,1 +1,1 @@
-export {GraphTableWithInput} from './ui/InputGraph'
+export { GraphTableWithInput } from './ui/InputGraph';

@@ -1,23 +1,25 @@
-import React, {useState} from 'react';
-import classes from './InputGraph.module.scss'
-import {Button} from "@/components/Button";
-import {Input} from "@/components/Input";
+import React, { useEffect, useState } from 'react';
+import classes from './InputGraph.module.scss';
+import { Button } from '@/components/Button';
+import { Input } from '@/components/Input';
 
-export const GraphTableWithInput = (props) => {
-    const {
-        handleSetGraph,
-        isChanged,
-        defaultGraph
-    } = props;
+export function GraphTableWithInput(props) {
+    const { handleSetGraph, isChanged, defaultGraph } = props;
 
-    const [graph, setGraph] = useState(defaultGraph ?? {
-        A: {B: 7, C: 9, F: 14},
-        B: {A: 7, C: 10, D: 15},
-        C: {A: 9, B: 10, D: 11, F: 2},
-        D: {B: 15, C: 11, E: 6},
-        E: {D: 6, F: 9},
-        F: {A: 14, C: 2, E: 9}
-    });
+    const [graph, setGraph] = useState(
+        defaultGraph || {
+            A: { B: 7, C: 9 },
+            B: { A: 7, C: 10, D: 15 },
+            C: { A: 9, B: 10, D: 11 },
+            D: { B: 15, C: 11, E: 6 },
+            E: { D: 6 },
+            F: {},
+        },
+    );
+
+    useEffect(() => {
+        console.log(graph);
+    }, [graph]);
 
     const vertices = Object.keys(graph);
 
@@ -26,10 +28,10 @@ export const GraphTableWithInput = (props) => {
             ...prevGraph,
             [rowVertex]: {
                 ...prevGraph[rowVertex],
-                [colVertex]: value !== '' ? parseInt(value, 10) : undefined
-            }
+                [colVertex]: value !== '' ? parseInt(value, 10) : undefined,
+            },
         }));
-        isChanged();
+        isChanged?.();
     };
 
     const handleSendGraph = () => {
@@ -40,41 +42,36 @@ export const GraphTableWithInput = (props) => {
         <div>
             <table>
                 <thead>
-                <tr>
-                    <th></th>
-                    {vertices.map((vertex) => (
-                        <th key={vertex}>{vertex}</th>
-                    ))}
-                </tr>
-                </thead>
-                <tbody>
-                {vertices.map((rowVertex) => (
-                    <tr key={rowVertex}>
-                        <th>{rowVertex}</th>
-                        {vertices.map((colVertex) => (
-                            <td key={colVertex}>
-                                <Input
-                                    className={classes.tableInput}
-                                    type="number"
-                                    value={graph[rowVertex][colVertex] || ''}
-                                    onChange={(e) =>
-                                        handleCellChange(rowVertex, colVertex, e.target.value)
-                                    }
-                                />
-                            </td>
+                    <tr>
+                        <th />
+                        {vertices.map((vertex) => (
+                            <th key={vertex}>{vertex}</th>
                         ))}
                     </tr>
-                ))}
+                </thead>
+                <tbody>
+                    {vertices.map((rowVertex) => (
+                        <tr key={rowVertex}>
+                            <th>{rowVertex}</th>
+                            {vertices.map((colVertex) => (
+                                <td key={colVertex}>
+                                    <Input
+                                        className={classes.tableInput}
+                                        type="number"
+                                        value={graph[rowVertex][colVertex] || ''}
+                                        onChange={(e) => handleCellChange(rowVertex, colVertex, e.target.value)}
+                                    />
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             {!defaultGraph && (
-                <Button
-                    style={{marginTop: 15}}
-                    onClick={handleSendGraph}
-                >
+                <Button style={{ marginTop: 15 }} onClick={handleSendGraph}>
                     Сохранить
                 </Button>
             )}
         </div>
     );
-};
+}

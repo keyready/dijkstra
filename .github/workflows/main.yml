@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Установка зависимостей
         run: npm run init
-        working-directory: ./
+        working-directory: ../
 
 
       - name: Starting ESlint

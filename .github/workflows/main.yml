@@ -14,11 +14,11 @@ jobs:
         run: npm run init
         working-directory: ../
 
-      - name: Show current directory
-        run: echo $PWD
-
       - name: Starting ESlint
         run: npm run lint
+
+      - name: Show current directory
+        run: echo $PWD
 
       - name: Starting Prettier
         run: npm run prettier

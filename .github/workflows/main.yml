@@ -18,7 +18,6 @@ jobs:
 
       - name: Установка зависимостей
         run: npm run init
-        working-directory: ../
 
       - name: Starting ESlint
         run: npm run lint

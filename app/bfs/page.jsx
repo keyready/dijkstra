@@ -38,7 +38,7 @@ export default function Page() {
             .then((res) => {
                 setReachableNodes(res);
             });
-    }, [startNode]);
+    }, [graph, startNode]);
 
     return (
         <div>

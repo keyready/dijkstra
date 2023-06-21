@@ -1,29 +1,29 @@
 name: CI/CD
 
 on:
-  push:
-    branches:
-      - '*'
+    push:
+        branches:
+            - '*'
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build-and-deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Проверка репозитория
-        uses: actions/checkout@v2
+        steps:
+            - name: Проверка репозитория
+              uses: actions/checkout@v2
 
-      - name: Установка зависимостей клиента
-        run: npm install
+            - name: Установка зависимостей клиента
+              run: npm install
 
-      - name: Установка зависимостей сервера
-        run: npm run init
+            - name: Установка зависимостей сервера
+              run: npm run init
 
-      - name: Запуск ESlint
-        run: npm run lint
+            - name: Запуск ESlint
+              run: npm run lint
 
-      - name: Запуск Prettier
-        run: npm run prettier
+            - name: Запуск Prettier
+              run: npm run prettier
 
-      - name: Сборка приложения
-        run: npm run build
+            - name: Сборка приложения
+              run: npm run build

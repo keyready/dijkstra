@@ -39,3 +39,12 @@ input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.notAllowed {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 30px;
+}

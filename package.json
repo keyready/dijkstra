@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "init-start": "npm install concurrently && npm run init && npm run start:dev",
         "init": "concurrently -n client-init,server-init -c green.bold,blue.bold \"npm run client:init\" \"npm run server:init\"",
         "init:force": "concurrently -n client-init,server-init -c green.bold,blue.bold \"npm run client:init --force\" \"npm run server:init --force\"",
         "start:dev": "concurrently -n client,server -c green.bold,blue.bold \"npm run dev\" \"nodemon server/server.js\"",

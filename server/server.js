@@ -26,7 +26,7 @@ app.post('/bfs', (req, res) => {
     try {
         const { startNode, graph } = req.body;
 
-        const track = bfs(startNode, graph);
+        const track = bfs(graph, startNode);
 
         return res.status(200).json(track);
     } catch (e) {

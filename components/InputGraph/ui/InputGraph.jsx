@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classes from './InputGraph.module.scss';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
@@ -16,10 +16,6 @@ export function GraphTableWithInput(props) {
             F: {},
         },
     );
-
-    useEffect(() => {
-        console.log(graph);
-    }, [graph]);
 
     const vertices = Object.keys(graph);
 

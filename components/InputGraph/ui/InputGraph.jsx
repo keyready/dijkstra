@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import classes from './InputGraph.module.scss';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 
 export function GraphTableWithInput(props) {
     const { handleSetGraph, isChanged, defaultGraph } = props;
+    const nodes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     const [graph, setGraph] = useState(
         defaultGraph || {
@@ -34,6 +35,10 @@ export function GraphTableWithInput(props) {
         handleSetGraph(graph);
     };
 
+    const addColumn = useCallback(() => {
+        setGraph({ ...graph, [nodes[Object.keys(graph).length]]: 1 });
+    }, [graph, nodes]);
+
     return (
         <div>
             <table>
@@ -43,6 +48,9 @@ export function GraphTableWithInput(props) {
                         {vertices.map((vertex) => (
                             <th key={vertex}>{vertex}</th>
                         ))}
+                        <th>
+                            <Button onClick={addColumn}>+</Button>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

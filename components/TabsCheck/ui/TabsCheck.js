@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const routes = ['/', 'bfs', 'dfs', 'dijkstra', 'dantzig', 'ford-fulkerson', 'floyd'];
+const routes = ['/', 'bfs', 'dfs', 'dijkstra', 'ford-fulkerson', 'floyd'];
 
 export const TabsCheck = () => {
     const [currentTab, setCurrentTab] = useState(0);

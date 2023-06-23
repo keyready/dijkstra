@@ -12,9 +12,9 @@ export default function Home() {
         <main className={classes.main}>
             <div className={classes.tipWrapper}>
                 <div className={classes.tip}>
-                    <h2 className={classes.tipTitle}>Работа выполнена</h2>
+                    <h2 className={classes.tipTitle}>Программные комплексы</h2>
                     <p className={classes.tipDescription}>
-                        Выполнена курсантом 611/11 учебной группы Корчаком Р.Д.
+                        Реализованы курсантом 611/11 учебной группы Корчаком Р.Д.
                     </p>
                 </div>
                 <div className={classes.tip}>
@@ -36,7 +36,6 @@ export default function Home() {
                 <Link href="/bfs">Обход графа в ширину</Link>
                 <Link href="/dfs">Обход графа в глубину</Link>
                 <Link href="/dijkstra">Алгоритм Дейкстры</Link>
-                <Link href="/dantzig">Алгоритм Данцига</Link>
                 <Link href="/ford-fulkerson">Алгоритм Форда-Фалкерсона</Link>
                 <Link href="/floyd">Алгоритм Флойда</Link>
             </div>

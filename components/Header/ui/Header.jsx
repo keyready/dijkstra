@@ -20,7 +20,6 @@ export function Header() {
                 )}
             </div>
             <Link href="/dijkstra">Дейкстра</Link>
-            <Link href="/dantzig">Данциг</Link>
             <Link href="/ford-fulkerson">Форд-Фалкерсон</Link>
             <Link href="/floyd">Флойд</Link>
         </div>

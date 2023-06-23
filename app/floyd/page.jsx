@@ -16,7 +16,7 @@ export default function Page() {
 
     const numRows = graph?.length;
     const numCols = numRows > 0 ? graph[0].length : 0;
-    const letters = 'ABCDEF';
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     const handleTableChange = useCallback(() => {
         setGraph(undefined);

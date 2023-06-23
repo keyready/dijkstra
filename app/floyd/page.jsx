@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import classes from './page.module.scss';
 import { classNames } from '@/lib/classNames';
 import { GraphTableWithInput } from '@/components/InputGraph';

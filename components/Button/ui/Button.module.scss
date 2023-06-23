@@ -17,4 +17,12 @@
         background: grey;
         outline: 2px solid grey;
     }
+
+    &:focus {
+        box-shadow: 10px 10px 100px white;
+    }
+
+    &:active {
+        transform: scale(.94);
+    }
 }

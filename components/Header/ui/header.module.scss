@@ -14,4 +14,39 @@
         color: red;
         font-weight: bold;
     }
+    a:hover {
+        text-decoration: underline green wavy;
+        //text-decoration: dotted;
+    }
+}
+
+.hoverLink {
+    position: relative;
+}
+
+.menu {
+    width: 200%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    padding: 20px;
+    background: lightcyan;
+    z-index: 1000;
+    top: 25px;
+    left: 50%;
+    border-top: none;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 0 0 10px 10px;
+
+    a:first-child {
+        color: black;
+        font-weight: normal;
+    }
 }

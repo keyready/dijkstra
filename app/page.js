@@ -1,21 +1,36 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 import styles from './page.module.scss';
 
 export default function Home() {
     return (
         <main className={styles.main}>
-            <h1>Лабораторная работа</h1>
-            <p className={styles.description}>Выолнена курсантом 611/11 учебной группы</p>
-            <p className={styles.description}>Корчаком Р.Д.</p>
+            <div className={styles.tipWrapper}>
+                <div className={styles.tip}>
+                    <h2>Работа выполнена</h2>
+                    <p>Выполнена курсантом 611/11 учебной группы</p>
+                    <p>Корчаком Р.Д.</p>
+                </div>
+                <div className={styles.tip}>
+                    <h2>Полезный совет</h2>
+                    <p>
+                        Для навигации по приложению используйте стрелочки влево и в право на
+                        клавиатуре
+                    </p>
+                </div>
+            </div>
 
             <h2 className={styles.title}>Содержание</h2>
             <h3>В работе реализованы следующие алгоритмы:</h3>
             <div className={styles.links}>
-                <Link href="/bfs">Обход в ширину</Link>
-                <Link href="/dijkstra">Дейкстра</Link>
-                <Link href="/floyd">Флойд</Link>
+                <Link href="/bfs">Обход графа в ширину</Link>
+                <Link href="/dfs">Обход графа в глубину</Link>
+                <Link href="/dijkstra">Алгоритм Дейкстры</Link>
+                <Link href="/dantzig">Алгоритм Данцига</Link>
+                <Link href="/ford-fulkerson">Алгоритм Форда-Фалкерсона</Link>
+                <Link href="/floyd">Алгоритм Флойда</Link>
             </div>
 
             <h2 className={styles.title}>Технологии</h2>

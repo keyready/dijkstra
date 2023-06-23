@@ -34,7 +34,7 @@ export default function Home() {
             <h3>В работе реализованы следующие алгоритмы:</h3>
             <div className={classes.links}>
                 <Link href="/bfs">Обход графа в ширину</Link>
-                <Link href="/dfs">Обход графа в глубину</Link>
+                <Link href="/bfs">Обход графа в глубину</Link>
                 <Link href="/dijkstra">Алгоритм Дейкстры</Link>
                 <Link href="/ford-fulkerson">Алгоритм Форда-Фалкерсона</Link>
                 <Link href="/floyd">Алгоритм Флойда</Link>

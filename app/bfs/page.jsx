@@ -4,11 +4,13 @@ import { useCallback, useState } from 'react';
 import classes from './page.module.scss';
 import { GraphTableWithInput } from '@/components/InputGraph';
 import { Button } from '@/components/Button';
+import { Switch } from '@/components/Switch';
 
 export default function Page() {
     const [reachableNodes, setReachableNodes] = useState({});
     const [graph, setGraph] = useState(undefined);
     const [startNode, setStartNode] = useState('');
+    const [isDfs, setIsDfs] = useState(false);
 
     const handleStartNodeChange = useCallback(
         (event) => {
@@ -26,8 +28,13 @@ export default function Page() {
         setGraph(undefined);
     }, []);
 
+    const handleChangeMode = useCallback((state) => {
+        setIsDfs(state);
+        setReachableNodes(undefined);
+    }, []);
+
     const findBFS = useCallback(() => {
-        fetch('http://localhost:9999/bfs', {
+        fetch(isDfs ? 'http://localhost:9999/dfs' : 'http://localhost:9999/bfs', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,13 +45,19 @@ export default function Page() {
             .then((res) => {
                 setReachableNodes(res);
             });
-    }, [graph, startNode]);
+    }, [graph, isDfs, startNode]);
 
     return (
         <div>
-            <h1 className={classes.header}>Обход графа в ширину</h1>
+            <h1 className={classes.header}>Обход графа</h1>
 
             <GraphTableWithInput isChanged={clearData} handleSetGraph={setGraph} />
+
+            <div className={classes.selectMode}>
+                <span>В ширину</span>
+                <Switch enabled={isDfs} setEnabled={handleChangeMode} />
+                <span>В глубину</span>
+            </div>
 
             {graph && (
                 <div className={classes.createGraphForm}>

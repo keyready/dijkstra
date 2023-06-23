@@ -6,6 +6,7 @@ const cors = require('cors');
 const { dijkstra } = require('./lib/dijkstra');
 const { bfs } = require('./lib/bfs');
 const { floyd } = require('./lib/floyd');
+const { dfs } = require('./lib/dfs');
 
 const app = express();
 
@@ -28,6 +29,19 @@ app.post('/bfs', (req, res) => {
         const { startNode, graph } = req.body;
 
         const track = bfs(graph, startNode);
+
+        return res.status(200).json(track);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: 'Непредвиденная ошибка' });
+    }
+});
+
+app.post('/dfs', (req, res) => {
+    try {
+        const { startNode, graph } = req.body;
+
+        const track = dfs(graph, startNode);
 
         return res.status(200).json(track);
     } catch (e) {

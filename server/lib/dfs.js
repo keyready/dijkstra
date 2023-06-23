@@ -9,9 +9,14 @@
  *
  * @param graph - исходный граф
  * @param startVertex - начальная вершина
- * @returns {*[]} - порядок обхода вершин
+ * @returns {string[]} - порядок обхода вершин
  */
-function dfs(graph, startVertex) {
+function dfs(originGraph, startVertex) {
+    const graph = {};
+    for (const vertex in originGraph) {
+        graph[vertex] = Object.keys(originGraph[vertex]);
+    }
+
     const visited = {};
     const traversalOrder = [];
 

@@ -43,12 +43,12 @@ const dijkstra = (startNode, endNode, graph) => {
     distances[startNode] = 0;
 
     // Добавляем стартовый узел в очередь
-    queue.push({ node: startNode, cost: 0 });
+    queue.push({ node: startNode, weight: 0 });
 
     while (queue.length) {
-        // Извлекаем узел с наименьшей стоимостью из очереди
-        queue.sort((a, b) => a.cost - b.cost);
-        const { node, cost } = queue.shift();
+        // Извлекаем узел с наименьшим весом из очереди
+        queue.sort((a, b) => a.weight - b.weight);
+        const { node, weight } = queue.shift();
 
         // Проверяем, был ли уже посещен этот узел
         if (visited[node]) {
@@ -57,13 +57,13 @@ const dijkstra = (startNode, endNode, graph) => {
 
         visited[node] = true;
 
-        // Обновляем стоимости смежных узлов
+        // Обновляем веса смежных узлов
         for (const neighbor in graph[node]) {
-            const newCost = cost + graph[node][neighbor];
-            if (newCost < distances[neighbor]) {
-                distances[neighbor] = newCost;
+            const newWeight = weight + graph[node][neighbor];
+            if (newWeight < distances[neighbor]) {
+                distances[neighbor] = newWeight;
                 previous[neighbor] = node;
-                queue.push({ node: neighbor, cost: newCost });
+                queue.push({ node: neighbor, weight: newWeight });
             }
         }
     }
@@ -71,33 +71,6 @@ const dijkstra = (startNode, endNode, graph) => {
     return { distance: distances[endNode] };
 };
 
-/**
- * Функция восстановлеия пути из начальной точки до любой
- *
- * @param previous - объект-результат выполнения алгоритма Дейкстры, содержащий кратчайшие пути от ноды до ноды
- * @param endNode - конечная нода, которой надо достичь
- * @returns {*[]} - массив нод, образующих кратчайший путь из startNode в endNode
- */
-const reconstructPath = (previous, endNode) => {
-    const path = [];
-    let currentNode = endNode;
-
-    // Проследовать цепочку предыдущих узлов до стартового узла
-    while (currentNode !== null) {
-        path.unshift(currentNode);
-        currentNode = previous[currentNode];
-    }
-
-    return path;
-};
-
 module.exports = {
     dijkstra,
-    reconstructPath,
 };
-
-// const endNode = 'C';
-//
-// // Восстановление кратчайшего пути
-// const shortestPath = reconstructPath(previous, endNode);
-// console.log('Shortest path from', startNode, 'to', endNode + ':', shortestPath);

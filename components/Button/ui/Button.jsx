@@ -2,9 +2,7 @@ import classes from './Button.module.scss';
 import { classNames } from '@/lib/classNames';
 
 export function Button(props) {
-    const {
-        children, className, type = 'primary', ...otherProps
-    } = props;
+    const { children, className, type = 'primary', ...otherProps } = props;
 
     return (
         <button

@@ -2,29 +2,37 @@
 
 import Link from 'next/link';
 import { useEffect } from 'react';
-import styles from './page.module.scss';
+import Image from 'next/image';
+import classes from './page.module.scss';
+import RightArrow from '../public/images/right_arrow.png';
+import LeftArrow from '../public/images/left_arrow.png';
 
 export default function Home() {
     return (
-        <main className={styles.main}>
-            <div className={styles.tipWrapper}>
-                <div className={styles.tip}>
-                    <h2>Работа выполнена</h2>
-                    <p>Выполнена курсантом 611/11 учебной группы</p>
-                    <p>Корчаком Р.Д.</p>
+        <main className={classes.main}>
+            <div className={classes.tipWrapper}>
+                <div className={classes.tip}>
+                    <h2 className={classes.tipTitle}>Работа выполнена</h2>
+                    <p className={classes.tipDescription}>
+                        Выполнена курсантом 611/11 учебной группы Корчаком Р.Д.
+                    </p>
                 </div>
-                <div className={styles.tip}>
-                    <h2>Полезный совет</h2>
-                    <p>
+                <div className={classes.tip}>
+                    <h2 className={classes.tipTitle}>Полезный совет</h2>
+                    <p className={classes.tipDescription}>
                         Для навигации по приложению используйте стрелочки влево и в право на
                         клавиатуре
                     </p>
+                    <div className={classes.images}>
+                        <Image className={classes.image} src={LeftArrow} alt="Стрелочка влево" />
+                        <Image className={classes.image} src={RightArrow} alt="Стрелочка вправо" />
+                    </div>
                 </div>
             </div>
 
-            <h2 className={styles.title}>Содержание</h2>
+            <h2 className={classes.title}>Содержание</h2>
             <h3>В работе реализованы следующие алгоритмы:</h3>
-            <div className={styles.links}>
+            <div className={classes.links}>
                 <Link href="/bfs">Обход графа в ширину</Link>
                 <Link href="/dfs">Обход графа в глубину</Link>
                 <Link href="/dijkstra">Алгоритм Дейкстры</Link>
@@ -33,9 +41,9 @@ export default function Home() {
                 <Link href="/floyd">Алгоритм Флойда</Link>
             </div>
 
-            <h2 className={styles.title}>Технологии</h2>
+            <h2 className={classes.title}>Технологии</h2>
             <h3>Для выполнения работы были использованы следующие технологии:</h3>
-            <ul className={styles.technologiesList}>
+            <ul className={classes.technologiesList}>
                 <li>
                     {'Для визуального отображения создан веб-интерфейс на фреймфорке '}
                     <a href="https://nextjs.org" target="_blank" rel="noreferrer">

@@ -8,23 +8,23 @@
  * По завершении обхода возвращаем массив traversalOrder, который содержит вершины в порядке их посещения.
  *
  * @param graph - исходный граф
- * @param startVertex - начальная вершина
+ * @param startNode - начальная вершина
  * @returns {string[]} - порядок обхода вершин
  */
-function dfs(originGraph, startVertex) {
+function dfs(originGraph, startNode) {
     const graph = {};
-    for (const vertex in originGraph) {
-        graph[vertex] = Object.keys(originGraph[vertex]);
+    for (const node in originGraph) {
+        graph[node] = Object.keys(originGraph[node]);
     }
 
     const visited = {};
     const traversalOrder = [];
 
-    function traverse(vertex) {
-        visited[vertex] = true;
-        traversalOrder.push(vertex);
+    function traverse(node) {
+        visited[node] = true;
+        traversalOrder.push(node);
 
-        const neighbors = graph[vertex];
+        const neighbors = graph[node];
         for (let i = 0; i < neighbors.length; i += 1) {
             const neighbor = neighbors[i];
             if (!visited[neighbor]) {
@@ -33,7 +33,7 @@ function dfs(originGraph, startVertex) {
         }
     }
 
-    traverse(startVertex);
+    traverse(startNode);
 
     return traversalOrder;
 }

@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const routes = ['/', 'bfs', 'dijkstra', 'ford-fulkerson', 'floyd'];
 
 export const TabsCheck = () => {
-    const [currentTab, setCurrentTab] = useState(0);
+    const savedTab = Cookies.get('saved-tab') || 0;
+    const [currentTab, setCurrentTab] = useState(Number(savedTab));
     const router = useRouter();
 
     useEffect(() => {
@@ -24,6 +26,7 @@ export const TabsCheck = () => {
 
         document.addEventListener('keydown', checkKeyboardPress);
         router.push(`/${routes[currentTab]}`);
+        Cookies.set('saved-tab', currentTab);
 
         return () => document.removeEventListener('keydown', checkKeyboardPress);
     }, [currentTab, router]);

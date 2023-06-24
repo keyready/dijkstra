@@ -3,10 +3,7 @@ const port = 9999;
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const { dijkstra } = require('./lib/dijkstra');
-const { bfs } = require('./lib/bfs');
-const { floyd } = require('./lib/floyd');
-const { dfs } = require('./lib/dfs');
+const { fordFulkerson, dijkstra, bfs, dfs, floyd } = require('./lib/index');
 
 const app = express();
 
@@ -55,6 +52,19 @@ app.post('/floyd', (req, res) => {
         const { graph } = req.body;
 
         const dist = floyd(graph);
+
+        return res.status(200).json(dist);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: 'Непредвиденная ошибка' });
+    }
+});
+
+app.post('/ford-fulkerson', (req, res) => {
+    try {
+        const { graph } = req.body;
+
+        const dist = fordFulkerson(graph);
 
         return res.status(200).json(dist);
     } catch (e) {

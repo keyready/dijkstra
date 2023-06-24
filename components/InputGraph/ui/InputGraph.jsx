@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import classes from './InputGraph.module.scss';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';

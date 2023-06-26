@@ -34,13 +34,18 @@ export default function Page() {
     }, []);
 
     const findBFS = useCallback(() => {
-        fetch(isDfs ? 'http://localhost:9999/dfs' : 'http://localhost:9999/bfs', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
+        fetch(
+            isDfs
+                ? 'https://dijkstra-server.vercel.app/dfs'
+                : 'https://dijkstra-server.vercel.app/bfs',
+            {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ graph, startNode }),
             },
-            body: JSON.stringify({ graph, startNode }),
-        })
+        )
             .then((res) => res.json())
             .then((res) => {
                 setReachableNodes(res);

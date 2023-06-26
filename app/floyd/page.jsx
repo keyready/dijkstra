@@ -23,9 +23,7 @@ export default function Page() {
     }, []);
 
     const handleGraphChange = useCallback((newGraph) => {
-        console.log(newGraph);
-
-        fetch('http://localhost:9999/floyd', {
+        fetch('https://dijkstra-server.vercel.app/floyd', {
             method: 'post',
             body: JSON.stringify({ graph: newGraph }),
             headers: {

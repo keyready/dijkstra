@@ -1,4 +1,4 @@
-function convertGraph2ToObject(graph) {
+function convertGraphToObject(graph) {
     const vertices = Object.keys(graph);
     const numVertices = vertices.length;
     const matrix = [];

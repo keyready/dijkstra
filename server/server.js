@@ -13,9 +13,9 @@ app.use(express.json());
 app.post('/get_dijkstra', (req, res) => {
     try {
         const { startNode, endNode, graph } = req.body;
-        const distances = dijkstra(startNode, endNode, graph);
+        const shortestPath = dijkstra(startNode, endNode, graph);
 
-        return res.status(200).json(distances);
+        return res.status(200).json({ distance: shortestPath });
     } catch (e) {
         return res.status(500).json({ message: 'Непредвиденная ошибка' });
     }

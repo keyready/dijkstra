@@ -1,3 +1,17 @@
+a.referenceLinks:visited,
+a.referenceLinks:link {
+    letter-spacing: 3px;
+    background: lightcyan;
+    color: black;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: 200ms;
+
+    &:hover {
+        background: lightblue;
+    }
+}
+
 .description {
     font-size: 14px;
     text-align: right;
@@ -36,8 +50,8 @@
     margin-left: 15px;
     margin-top: 10px;
 
-    a {
-        text-decoration: underline;
+    li {
+        margin: 10px 0;
     }
 }
 
@@ -48,10 +62,6 @@
     flex-direction: column;
     gap: 10px;
     align-items: start;
-
-    a {
-        text-decoration: underline;
-    }
 }
 
 .images {
@@ -81,6 +91,7 @@
 .tipTitle {
     width: 100%;
     text-align: center;
+    margin: 15px 0;
 }
 
 .tipDescription {

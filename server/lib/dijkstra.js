@@ -1,75 +1,79 @@
 /**
+ * Алгоритм нахождения минимального числа из пары чисел
+ *
+ * @param distances - пути
+ * @param visited - посещенные вершины
+ * @returns lowestNode - нода, до которой есть кратчайший путь
+ */
+function findShortestTrack(distances, visited) {
+    // минимальное расстояние
+    let lowestCost = Infinity;
+    // нода с миниальным путем
+    let lowestNode;
+
+    Object.keys(distances).forEach((node) => {
+        const cost = distances[node];
+        // додбавляем условие проверки непосещенности сравниваемой вершины
+        if (cost < lowestCost && !visited.includes(node)) {
+            lowestCost = cost;
+            lowestNode = node;
+        }
+    });
+    return lowestNode;
+}
+
+/**
  * Реализация алгоритма Дейкстры на JavaScript
  *
  * @param startNode - начальная нода
  * @param endNode - конечная нода
  * @param graph - данный граф
- * @returns {{distance: *}} - объект дистанций
+ * @returns distance - объект дистанций
  *  между начальной нодой и всеми нодами и
  *  объект для отслеживания пути от стартового узла до каждого другого узла в графе
  */
-const dijkstra = (startNode, endNode, graph) => {
-    /**
-     * тут хрянятся дистанции между начальной нодой и всеми остальными, где
-     *  ключ - нода
-     *  значение - расстояние до нее от начальной ноды
-     */
+function dijkstra(startNode, endNode, graph) {
+    // объект кратчайших путей
     const distances = {};
 
-    /**
-     * объект для сохранения посещенных нод, где
-     *  ключ - нода
-     *  значение - посещенность (true/false)
-     */
-    const visited = {};
+    // посещенные вершины
+    const visited = [];
+
+    // соседи данной вершины
+    let neighbors = {};
 
     /**
-     * Объект для хранения наименьших расстояний между узлами для восстановления крайтчайшего пути
-     * из любой ноды в любую
+     * изначально добавляем в объект дистанций все соседние вершины начальной ноды
+     * или, если таких нет, заполняем бескончено большим числом
      */
-    const previous = {};
+    Object.keys(graph).forEach((node) => {
+        if (node !== startNode) distances[node] = graph[startNode][node] || Infinity;
+    });
 
-    /**
-     * Очередь посещения узлов
-     */
-    const queue = [];
+    // получаем ноду, минимально удаленную от начальной
+    let node = findShortestTrack(distances, visited);
 
-    // Инициализация начальных значений
-    for (const node in graph) {
-        distances[node] = Infinity;
-        previous[node] = null;
+    // и пока она определена,
+    while (node) {
+        const cost = distances[node];
+        // получаем ее соседей
+        neighbors = graph[node];
+        // и для каждого соседа высчитываем новое расстояние
+        Object.keys(neighbors).forEach((neighbor) => {
+            const newCost = cost + neighbors[neighbor];
+            // если до ноды можно добраться более коротким путем, перезаписываем значение
+            if (newCost < distances[neighbor]) distances[neighbor] = newCost;
+        });
+
+        // длбавляем вершину в посещенную, чтобы не возвращаться в нее
+        visited.push(node);
+
+        // снова ищем минимально удаленного соседа от данной вершины
+        node = findShortestTrack(distances, visited);
     }
 
-    distances[startNode] = 0;
-
-    // Добавляем стартовый узел в очередь
-    queue.push({ node: startNode, weight: 0 });
-
-    while (queue.length) {
-        // Извлекаем узел с наименьшим весом из очереди
-        queue.sort((a, b) => a.weight - b.weight);
-        const { node, weight } = queue.shift();
-
-        // Проверяем, был ли уже посещен этот узел
-        if (visited[node]) {
-            continue;
-        }
-
-        visited[node] = true;
-
-        // Обновляем веса смежных узлов
-        for (const neighbor in graph[node]) {
-            const newWeight = weight + graph[node][neighbor];
-            if (newWeight < distances[neighbor]) {
-                distances[neighbor] = newWeight;
-                previous[neighbor] = node;
-                queue.push({ node: neighbor, weight: newWeight });
-            }
-        }
-    }
-
-    return { distance: distances[endNode] };
-};
+    return distances[endNode];
+}
 
 module.exports = {
     dijkstra,

@@ -20,6 +20,7 @@ module.exports = {
         'max-len': ['error', { ignoreComments: true, code: 120 }],
         'react-hooks/exhaustive-deps': 'error',
         'react/button-has-type': 'off',
+        'no-loop-func': 'off',
         'no-restricted-globals': 'off',
         'no-nested-ternary': 'off',
         'react-hooks/rules-of-hooks': 'error',

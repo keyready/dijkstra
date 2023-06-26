@@ -1,11 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
-import Image from 'next/image';
 import classes from './page.module.scss';
-import RightArrow from '../public/images/right_arrow.png';
-import LeftArrow from '../public/images/left_arrow.png';
 
 export default function Home() {
     return (

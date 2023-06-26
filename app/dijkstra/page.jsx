@@ -37,7 +37,7 @@ export default function Page() {
     }, []);
 
     const getGraph = useCallback(() => {
-        fetch('https://dijkstra-server.vercel.app/get_dijkstra', {
+        fetch(`${process.env.apiUrl}/get_dijkstra`, {
             method: 'post',
             body: JSON.stringify({ startNode, endNode, graph }),
             headers: {

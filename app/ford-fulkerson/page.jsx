@@ -1,7 +1,5 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-
 import classes from './page.module.scss';
 
 import { classNames } from '@/lib/classNames';

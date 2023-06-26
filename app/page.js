@@ -17,17 +17,17 @@ export default function Home() {
                         Реализованы курсантом 611/11 учебной группы Корчаком Р.Д.
                     </p>
                 </div>
-                <div className={classes.tip}>
-                    <h2 className={classes.tipTitle}>Полезный совет</h2>
-                    <p className={classes.tipDescription}>
-                        Для навигации по приложению используйте стрелочки влево и в право на
-                        клавиатуре
-                    </p>
-                    <div className={classes.images}>
-                        <Image className={classes.image} src={LeftArrow} alt="Стрелочка влево" />
-                        <Image className={classes.image} src={RightArrow} alt="Стрелочка вправо" />
-                    </div>
-                </div>
+                {/* <div className={classes.tip}> */}
+                {/*    <h2 className={classes.tipTitle}>Полезный совет</h2> */}
+                {/*    <p className={classes.tipDescription}> */}
+                {/*        Для навигации по приложению используйте стрелочки влево и в право на */}
+                {/*        клавиатуре */}
+                {/*    </p> */}
+                {/*    <div className={classes.images}> */}
+                {/*        <Image className={classes.image} src={LeftArrow} alt="Стрелочка влево" /> */}
+                {/*        <Image className={classes.image} src={RightArrow} alt="Стрелочка вправо" /> */}
+                {/*    </div> */}
+                {/* </div> */}
             </div>
 
             <h2 className={classes.title}>Содержание</h2>

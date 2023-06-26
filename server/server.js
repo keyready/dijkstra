@@ -3,6 +3,7 @@ const port = 9999;
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+// eslint-disable-next-line object-curly-newline
 const { fordFulkerson, dijkstra, bfs, dfs, floyd } = require('./lib/index');
 
 const app = express();
